@@ -15,4 +15,4 @@ module ShipIt2
 end
 
 # load all ruby files in the directory "lib" and its subdirectories
-require_all 'lib'
+require_rel '../lib'
