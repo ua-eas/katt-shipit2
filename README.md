@@ -13,10 +13,12 @@ $ uar_shipit add_version build1234
 2. Run bundle to install required gems
 3. Create a $PROJECT_HOME/bin/jira_client.yaml config file like this with the jira authentication information:
 
-    jira:
-      user: testinguser
-      password: testing123
-      url: http://testingurl.com/jira
+---
+jira:
+  user: testinguser
+  password: testing123
+  url: http://testingurl.com/jira
+...
 
 ## Testing
 
