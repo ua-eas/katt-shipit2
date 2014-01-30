@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+require 'thor'
+require_relative "../lib/shipit2"
+
+class ShipItUAR < Thor
+  desc "add_version VERSION", "Adds a new VERSION in jira"
+  def add_version(version)
+    jira_client = ShipIt2::Jira.new
+
+    project_args = {
+      :jira => jira_client
+    }
+    uar_project = ShipIt2::UARProject.new(project_args)
+    uar_project.add_version version
+  end
+end
+
+ShipItUAR.start(ARGV)

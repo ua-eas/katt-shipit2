@@ -1,0 +1,5 @@
+---
+jira:
+  user: testinguser
+  password: testing123
+  url: http://testingurl.com/jira
