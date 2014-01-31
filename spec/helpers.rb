@@ -7,8 +7,9 @@ module Helpers
       :username => config.jira_user,
       :password => config.jira_password,
       :site     => config.jira_url,
-      :context_path => "/",
-      :auth_type => :basic
+      :context_path => "",
+      :auth_type => :basic,
+      :use_ssl => false
     }
 
     client = JIRA::Client.new(options)
@@ -34,8 +35,9 @@ module Helpers
       :username => config.jira_user,
       :password => config.jira_password,
       :site     => config.jira_url,
-      :context_path => "/",
-      :auth_type => :basic
+      :context_path => "",
+      :auth_type => :basic,
+      :use_ssl => false
     }
 
     client = JIRA::Client.new(options)
