@@ -1,7 +1,12 @@
 require 'yaml'
-require 'active_support/core_ext'
 require 'jira'
-require 'require_all'
+
+require 'shipit2/base'
+require 'shipit2/config'
+require 'shipit2/jira'
+require 'shipit2/jira_config'
+require 'shipit2/project'
+require 'shipit2/uar_project'
 
 module ShipIt2
 
@@ -13,6 +18,3 @@ module ShipIt2
   end
 
 end
-
-# load all ruby files in the directory "lib" and its subdirectories
-require_rel '../lib'

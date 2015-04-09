@@ -6,7 +6,7 @@ describe ShipIt2::Base do
 
   describe "#new" do
     it "should raise an exception on instantiation" do
-      lambda { base = ShipIt2::Base.new }.should raise_exception
+      expect { base = ShipIt2::Base.new }.to raise_exception
     end
   end
 

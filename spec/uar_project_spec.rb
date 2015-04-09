@@ -10,21 +10,21 @@ describe ShipIt2::UARProject do
 
   describe "#new" do
     it "should not raise an exception on instantiation" do
-      lambda { project = ShipIt2::UARProject.new }.should_not raise_exception
+      expect { project = ShipIt2::UARProject.new }.to_not raise_exception
     end
 
     it "should return a new ShipIt2::UARProject object" do
-      @project.should be_an_instance_of ShipIt2::UARProject
+      expect(@project).to be_a(ShipIt2::UARProject)
     end
   end
 
   describe "#jira_tag" do
     it "should respond to the jira_tag method call" do
-      @project.should respond_to :jira_tag
+      expect(@project).to respond_to(:jira_tag)
     end
 
     it "should return UAR for the jira_tag method call" do
-      @project.jira_tag.should == "UAR"
+      expect(@project.jira_tag).to eq("UAR")
     end
   end
 

@@ -13,45 +13,51 @@ describe ShipIt2::Jira do
 
   describe "#new" do
     it "should not raise an exception on instantiation" do
-      lambda { jira = ShipIt2::Jira.new }.should_not raise_exception
+      expect { jira = ShipIt2::Jira.new }.to_not raise_exception
     end
 
     it "should return a new ShipIt2::Jira object" do
-      @jira.should be_an_instance_of ShipIt2::Jira
+      expect(@jira).to be_a(ShipIt2::Jira)
     end
   end
 
   describe "#add_version_for_project" do
     it "should respond to the add_version_for_project method call" do
-      @jira.should respond_to :add_version_for_project
+      expect(@jira).to respond_to(:add_version_for_project)
     end
 
     it "should create a JIRA::Client object and use it to create a version" do
 
       mock_jira_version = double("JIRA::Client::Version")
-      mock_jira_version.stub(:save) { true }
-      mock_jira_version.should_receive(:save).once
+      allow(mock_jira_version).to receive(:save) { true }
+      expect(mock_jira_version).to receive(:save).once
 
       mock_jira_client = double("JIRA::Client")
-      mock_jira_client.stub_chain("Version.build").and_return(mock_jira_version)
+      mock_jira_project = double("Jira::Project")
+      allow(mock_jira_client).to receive_message_chain("Version.build") { mock_jira_version }
+      allow(mock_jira_client).to receive_message_chain("Project.find") { mock_jira_project }
+      allow(mock_jira_project).to receive(:versions) { [] }
 
       jira = ShipIt2::Jira.new({:jira_client => mock_jira_client})
 
-      lambda { jira.add_version_for_project("testversion1234", "UAR") }.should_not raise_exception
+      expect { jira.add_version_for_project("testversion1234", "UAR") }.to_not raise_exception
     end
 
     it "should raise if the version fails to save" do
 
       mock_jira_version = double("JIRA::Client::Version")
-      mock_jira_version.stub(:save) { false }
-      mock_jira_version.should_receive(:save).once
+      allow(mock_jira_version).to receive(:save) { false }
+      expect(mock_jira_version).to receive(:save).once
 
       mock_jira_client = double("JIRA::Client")
-      mock_jira_client.stub_chain("Version.build").and_return(mock_jira_version)
+      mock_jira_project = double("Jira::Project")
+      allow(mock_jira_client).to receive_message_chain("Version.build") { mock_jira_version }
+      allow(mock_jira_client).to receive_message_chain("Project.find") { mock_jira_project }
+      allow(mock_jira_project).to receive(:versions) { [] }
 
       jira = ShipIt2::Jira.new({:jira_client => mock_jira_client})
 
-      lambda { jira.add_version_for_project("testversion1234", "UAR") }.should raise_exception
+      expect { jira.add_version_for_project("testversion1234", "UAR") }.to raise_exception
     end
   end
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'thor'
-require_relative "../lib/shipit2"
+require "shipit2"
 
 class ShipItUAR < Thor
   desc "add_version VERSION", "Adds a new VERSION in jira"

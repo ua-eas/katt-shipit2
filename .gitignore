@@ -1,1 +1,3 @@
-config/jira_client.yaml
+config/*
+Gemfile.lock
+*.gem
