@@ -11,18 +11,18 @@ describe ShipIt2::Config do
 
   describe "#new" do
     it "should not raise an exception on instantiation" do
-      lambda { config = ShipIt2::Config.new(@config_args) }.should_not raise_exception
+      expect { config = ShipIt2::Config.new(@config_args) }.to_not raise_exception
     end
 
     it "should raise a run time exception if the config file passed in is missing" do
-      lambda {
+      expect {
         config_args = { :config_file => "spec/resources/missing_shipit2_config.yaml" }
         config = ShipIt2::Config.new(config_args)
-      }.should raise_exception
+      }.to raise_exception
     end
 
     it "should return a new ShipIt2::Config object" do
-      @config.should be_an_instance_of ShipIt2::Config
+      expect(@config).to be_a ShipIt2::Config
     end
   end
 
