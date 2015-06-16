@@ -10,7 +10,8 @@ class ShipIt2::Jira < ShipIt2::Base
       :site     => jira_config.jira_url,
       :context_path => "",
       :auth_type => :basic,
-      :use_ssl => false
+      :use_ssl => true,
+      :ssl_verify_mode => 0
     }
 
     @client = args[:jira_client] || JIRA::Client.new(options)
